@@ -2,7 +2,9 @@
 
 ----Определить алгоритм с наилучшим сжатием-----
 
+
 Список дисков:
+
 lsblk
 NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 sda                         8:0    0 17.9G  0 disk
@@ -21,11 +23,15 @@ sdi                         8:128  0  512M  0 disk
 sr0                        11:0    1 1024M  0 rom
 
 
+
 Установка пакета утилит для ZFS
+
 sudo apt install zfsutils-linux
 
 
+
 Создаём пулы otus1,otus2,otus3, otus4 из двух дисков в режиме RAID 1:
+
 zpool create otus1 mirror /dev/sdb /dev/sdc
 zpool create otus2 mirror /dev/sdd /dev/sde
 zpool create otus3 mirror /dev/sdf /dev/sdg
@@ -33,20 +39,26 @@ zpool create otus4 mirror /dev/sdh /dev/sdi
 
 
 Проверяем
+
 zpool list
+
 NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
 otus1   480M   111K   480M        -         -     0%     0%  1.00x    ONLINE  -
 otus2   480M   114K   480M        -         -     0%     0%  1.00x    ONLINE  -
 otus3   480M   117K   480M        -         -     0%     0%  1.00x    ONLINE  -
 otus4   480M   104K   480M        -         -     0%     0%  1.00x    ONLINE  -
 
+
 Добавляем алгоритмы сжатия:
+
 zfs set compression=lzjb otus1
 zfs set compression=lz4 otus2
 gzip: zfs set compression=gzip-9 otus3
 zle:  zfs set compression=zle otus4
 
+
 Проверяем
+
 zfs get all | grep compression
 otus1  compression           lzjb                   local
 otus2  compression           lz4                    local
@@ -54,8 +66,11 @@ otus3  compression           gzip-9                 local
 otus4  compression           zle                    local
 
 
+
 Скачиваем один и тот же текстовый файл во все пулы:
+
 for i in {1..4}; do wget -P /otus$i https://gutenberg.org/cache/epub/2600/pg2600.converter.log; done
+
 
 Проверяем:
 ls -l /otus*

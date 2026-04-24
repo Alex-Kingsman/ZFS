@@ -1,12 +1,6 @@
-MIME-Version: 1.0
-Content-Type: multipart/related; boundary="----=_NextPart_01DCD3D3.F43BC430"
 
-Данный документ является веб-страницей в одном файле, также называемой файлом веб-архива. Если вы видите это сообщение, значит данный браузер или редактор не поддерживает файлы веб-архива. Скачайте браузер, поддерживающий веб-архивы, например Windows® Internet Explorer®.
 
-------=_NextPart_01DCD3D3.F43BC430
-Content-Location: file:///C:/B133F113/ZFS.htm
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset="windows-1251"
+
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml"
 xmlns:o=3D"urn:schemas-microsoft-com:office:office"
